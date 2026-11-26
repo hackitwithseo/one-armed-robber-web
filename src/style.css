@@ -646,6 +646,15 @@ button.primary:active {
   body.touch #alarmBanner {
     top: 118px;
   }
+  .hud-block.center {
+    min-width: 0;
+  }
+  .hud-block.right {
+    flex: 0 0 auto;
+  }
+  #ammoText {
+    white-space: nowrap;
+  }
   #bagCount {
     font-size: 20px;
   }
