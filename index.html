@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One-Armed Robber — Web Heist</title>
+    <meta
+      name="description"
+      content="A free browser tribute to One-armed robber: rob the bank, fill the duffel, and get out alive with one arm."
+    />
+    <meta name="theme-color" content="#080910" />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <div id="hud" class="hidden">
+      <div id="vignette"></div>
+
+      <div class="panel objective">
+        <div class="label">Objective</div>
+        <div id="objectiveText">Loot the bank, get to $50,000</div>
+        <div class="bar thin"><i id="objectiveBar"></i></div>
+        <div id="bankedText" class="mono">$0 / $50,000 secured</div>
+      </div>
+
+      <div id="alarmBanner" class="hidden">
+        <span class="dot"></span>
+        <span id="policeTimer">POLICE IN 1:30</span>
+      </div>
+
+      <div id="crosshair"><span></span></div>
+
+      <div id="drillWrap" class="hidden">
+        <div class="bar"><i id="drillBar"></i></div>
+        <span>DRILLING THE VAULT — ONE HAND</span>
+      </div>
+
+      <div id="prompt" class="hidden">
+        <b id="promptKey">E</b>
+        <span id="promptText"></span>
+      </div>
+
+      <div id="toast"></div>
+
+      <div id="touch">
+        <div id="stick"><div id="stickKnob"></div></div>
+        <div id="touchActions">
+          <button class="tbtn fire" id="btnFire">FIRE</button>
+          <button class="tbtn" id="btnUse">USE</button>
+          <button class="tbtn" id="btnReload">RELOAD</button>
+          <button class="tbtn" id="btnDrop">DROP</button>
+          <button class="tbtn small" id="btnCrouch">CROUCH</button>
+        </div>
+        <button class="tbtn small" id="btnPause">II</button>
+      </div>
+
+      <div class="hud-bottom">
+        <div class="hud-block">
+          <div class="label">Health</div>
+          <div class="bar health"><i id="healthBar"></i></div>
+        </div>
+        <div class="hud-block center">
+          <div class="label">Duffel</div>
+          <div id="bagCount">0 / 6</div>
+          <div id="bagValue" class="mono">$0</div>
+          <div id="stowWarn" class="hidden">PISTOL STOWED — [G] DROP</div>
+        </div>
+        <div class="hud-block right">
+          <div class="label">Pistol</div>
+          <div id="ammoText">6<span> / 24</span></div>
+          <div id="reloadWrap" class="bar thin hidden"><i id="reloadBar"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="menu" class="screen">
+      <div class="card">
+        <div class="kicker">A free browser heist · tribute</div>
+        <h1>One-Armed<br /><span>Robber</span></h1>
+        <p class="lede">
+          One arm. One duffel. One way out.<br />
+          Rob the bank, fill the bag, and reach the van before the police arrive.
+        </p>
+
+        <div class="keys touch-only">
+          <div><b>Left stick</b><span>Move (push far to sprint)</span></div>
+          <div><b>Drag</b><span>Look around</span></div>
+          <div><b>FIRE</b><span>Shoot</span></div>
+          <div><b>USE</b><span>Loot / take down / hold to drill</span></div>
+          <div><b>DROP</b><span>Drop the duffel to draw</span></div>
+          <div><b>RELOAD</b><span>Slow one-handed reload</span></div>
+          <div><b>CROUCH</b><span>Toggle crouch</span></div>
+          <div><b>II</b><span>Pause</span></div>
+        </div>
+
+        <div class="keys desktop-only">
+          <div><b>WASD</b><span>Move</span></div>
+          <div><b>Mouse</b><span>Look</span></div>
+          <div><b>LMB</b><span>Shoot</span></div>
+          <div><b>E</b><span>Interact / hold to drill</span></div>
+          <div><b>G</b><span>Drop the duffel</span></div>
+          <div><b>R</b><span>Reload (slow)</span></div>
+          <div><b>Shift</b><span>Sprint</span></div>
+          <div><b>Ctrl / C</b><span>Crouch</span></div>
+          <div><b>M</b><span>Sound on / off</span></div>
+          <div><b>Esc</b><span>Pause</span></div>
+        </div>
+
+        <button id="startBtn" class="primary">Start the heist</button>
+
+        <p class="fine">
+          One arm means one hand: with cash in the duffel your pistol is stowed. Reloads take a
+          while. Sneak, take guards down, or go loud — then get out alive.
+          <br /><br />
+          Fan-made tribute inspired by <em>One-armed robber</em> by Duhndal (2023). Not affiliated
+          with or endorsed by the original. All code and art here are original.
+        </p>
+      </div>
+    </div>
+
+    <div id="pause" class="screen hidden">
+      <div class="card small">
+        <div class="kicker">Paused</div>
+        <h2>The heist waits</h2>
+        <p class="lede">Take a breath. The guards keep their patrol when you come back.</p>
+        <button id="resumeBtn" class="primary">Resume</button>
+        <p class="fine">Click resume to lock the mouse again.</p>
+      </div>
+    </div>
+
+    <div id="end" class="screen hidden">
+      <div class="card small">
+        <div class="kicker">Heist report</div>
+        <h2 id="endTitle">Heist over</h2>
+        <p id="endSub" class="lede"></p>
+        <div id="endStats" class="stats"></div>
+        <button id="restartBtn" class="primary">Rob it again</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
