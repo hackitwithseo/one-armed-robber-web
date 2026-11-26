@@ -443,6 +443,11 @@ body.touch #drillWrap {
   bottom: 108px;
 }
 
+body.touch #toast {
+  top: 152px;
+  bottom: auto;
+}
+
 /* ---------------------------------------------------------------- screens */
 .screen {
   position: fixed;
@@ -625,6 +630,21 @@ button.primary:active {
   }
   .hud-block {
     min-width: 0;
+  }
+  .hud-bottom {
+    gap: 10px;
+  }
+  .bar.health {
+    width: 108px;
+  }
+  #reloadWrap {
+    width: 76px;
+  }
+  body.touch .objective {
+    right: 78px;
+  }
+  body.touch #alarmBanner {
+    top: 118px;
   }
   #bagCount {
     font-size: 20px;
